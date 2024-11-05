@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="file-compare-container">
+        <h2>File Comparison</h2>
+        <table class="table">
+            <tr>
+                <td>
+                    <label for="file1">File 1:</label>
+                </td>
+                <td>
+                    <input type="file" id="file1" accept=".txt" (change)="onFileSelected($event, 1)" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="file2">File 2:</label>
+                </td>
+                <td>
+                    <input type="file" id="file2" accept=".txt" (change)="onFileSelected($event, 2)" />
+                </td>
+            </tr>
+        </table>
+        <button (click)="compareFiles()" class="btn btn-outline-success">Compare Files</button>
+        <div *ngIf="comparisonResult">
+            <h3>Comparison Result</h3>
+            <pre>{{ comparisonResult | json }}</pre>
+        </div>
+    </div>
+</div>

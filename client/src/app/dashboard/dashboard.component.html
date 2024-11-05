@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="d-flex justify-content-between">
+      <div *ngFor="let d of yearWiseDataSetPieCHart">
+        <h3 class="d-block text-center">Year - {{d.year}}</h3>
+        <canvas baseChart [type]="'pie'" [datasets]="d.salesData" [labels]="pieChartLabels" [options]="pieChartOptions"
+          [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+        </canvas>
+      </div>
+    </div>
+  
+    <div class="pt-5 d-flex justify-content-between">
+      <div>
+        <canvas baseChart [data]="barChartData" [options]="barChartOptions" [plugins]="barChartPlugins"
+          [legend]="barChartLegend" [type]="'bar'" style="width: 100%;">
+        </canvas>
+      </div>
+      <div>
+        <div>
+          <select (change)="change($event)">
+            <option *ngFor="let x of lineChartDataByType" [value]="x.type">{{x.type}}</option>
+          </select>
+        </div>
+        <div style="display: block;" *ngFor="let x of lineChartDataByType">
+          <ng-container *ngIf="x.type===selectedLineChartType">
+            <canvas baseChart width="400" height="400" [type]="'line'" [data]="x.lineChartData"
+              [options]="lineChartOptions" [legend]="lineChartLegend">
+            </canvas>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  
